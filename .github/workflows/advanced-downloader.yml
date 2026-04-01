@@ -30,57 +30,36 @@ jobs:
           echo "Target URL: $URL"
           echo "Output Filename: $FILENAME"
 
-          # تلاش اول: curl (با محدودیت زمان 20 ثانیه برای اتصال و 60 ثانیه برای کل دانلود)
           echo "::group::Attempt 1: Using curl"
-          curl --fail \
-               --connect-timeout 15 \
-               --max-time 60 \
-               --retry 2 \
-               --retry-delay 2 \
-               -L -o "$FILENAME" "$URL"
-          CURL_EXIT_CODE=$?
-          echo "::endgroup::"
-
-          if [ $CURL_EXIT_CODE -eq 0 ]; then
+          # قرار دادن دستور مستقیماً داخل if برای جلوگیری از توقف اسکریپت
+          if curl --fail --connect-timeout 15 --max-time 60 --retry 2 --retry-delay 2 -L -o "$FILENAME" "$URL"; then
+            echo "::endgroup::"
             echo "✅ Curl downloaded the file successfully."
             echo "downloaded_file_path=$FILENAME" >> $GITHUB_OUTPUT
           else
-            echo "❌ Curl failed or timed out (exit code $CURL_EXIT_CODE). Trying wget..."
+            echo "::endgroup::"
+            echo "❌ Curl failed or timed out. Trying wget..."
             rm -f "$FILENAME"
 
-            # تلاش دوم: wget (با محدودیت زمان 15 ثانیه)
             echo "::group::Attempt 2: Using wget"
-            wget --tries=2 \
-                 --timeout=15 \
-                 --read-timeout=15 \
-                 -O "$FILENAME" "$URL"
-            WGET_EXIT_CODE=$?
-            echo "::endgroup::"
-            
-            if [ $WGET_EXIT_CODE -eq 0 ]; then
+            if wget --tries=2 --timeout=15 --read-timeout=15 -O "$FILENAME" "$URL"; then
+              echo "::endgroup::"
               echo "✅ Wget downloaded the file successfully."
               echo "downloaded_file_path=$FILENAME" >> $GITHUB_OUTPUT
             else
-              echo "❌ Wget failed or timed out (exit code $WGET_EXIT_CODE). Trying aria2c..."
+              echo "::endgroup::"
+              echo "❌ Wget failed or timed out. Trying aria2c..."
               rm -f "$FILENAME"
 
-              # تلاش سوم: aria2c (با محدودیت زمان 15 ثانیه)
               echo "::group::Attempt 3: Using aria2c"
-              aria2c -x 4 -s 4 \
-                     --connect-timeout=15 \
-                     --timeout=15 \
-                     --max-tries=2 \
-                     --file-allocation=none \
-                     -o "$FILENAME" "$URL"
-              ARIA2_EXIT_CODE=$?
-              echo "::endgroup::"
-
-              if [ $ARIA2_EXIT_CODE -eq 0 ]; then
+              if aria2c -x 4 -s 4 --connect-timeout=15 --timeout=15 --max-tries=2 --file-allocation=none -o "$FILENAME" "$URL"; then
+                echo "::endgroup::"
                 echo "✅ aria2c downloaded the file successfully."
                 echo "downloaded_file_path=$FILENAME" >> $GITHUB_OUTPUT
               else
-                echo "❌ aria2c failed or timed out (exit code $ARIA2_EXIT_CODE)."
-                echo "::error::All download methods (curl, wget, aria2c) failed or timed out. Cannot download the file."
+                echo "::endgroup::"
+                echo "❌ aria2c failed or timed out."
+                echo "::error::All download methods (curl, wget, aria2c) failed or timed out. This usually means the target server is blocking GitHub's IPs (Geo-blocking)."
                 exit 1
               fi
             fi
