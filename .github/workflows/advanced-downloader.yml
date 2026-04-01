@@ -1,101 +1,91 @@
-# نام Workflow که در تب Actions گیت‌هاب نمایش داده می‌شود
 name: Advanced Downloader with Fallback
 
-# تعریف تریگر (فعال‌کننده)
-# workflow_dispatch به شما اجازه می‌دهد این Workflow را به صورت دستی اجرا کنید
-# و برای آن ورودی تعریف کنید.
 on:
   workflow_dispatch:
     inputs:
       download_url:
         description: 'URL of the file to download'
         required: true
-        # می‌توانید یک لینک پیش‌فرض برای تست قرار دهید
         default: 'https://s2.pluginyab.ir/plugins/jet-menu-2.4.18.zip'
 
 jobs:
   download_file_job:
-    # نام جاب که در رابط کاربری گیت‌هاب نمایش داده می‌شود
     name: Download File with Multiple Tools
-    # استفاده از آخرین نسخه اوبونتو برای اجرا
     runs-on: ubuntu-latest
 
     steps:
-      # مرحله اول: چک‌اوت کردن کد (یک عمل استاندارد و پیشنهادی)
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # مرحله دوم: نصب ابزارهای مورد نیاز
-      # curl و wget به صورت پیش‌فرض نصب هستند، اما aria2c را نصب می‌کنیم
       - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y aria2
 
-      # مرحله سوم: تلاش برای دانلود با مکانیزم Fallback
-      # این مهم‌ترین بخش Workflow است
       - name: Attempt Download with Fallback
-        id: download_step # یک شناسه برای این مرحله تعریف می‌کنیم تا به خروجی آن دسترسی داشته باشیم
+        id: download_step
         run: |
-          # دریافت URL از ورودی و استخراج نام فایل
           URL="${{ inputs.download_url }}"
           FILENAME=$(basename "$URL")
           echo "Target URL: $URL"
           echo "Output Filename: $FILENAME"
 
-          # تلاش اول: با استفاده از curl
+          # تلاش اول: curl (با محدودیت زمان 20 ثانیه برای اتصال و 60 ثانیه برای کل دانلود)
           echo "::group::Attempt 1: Using curl"
-          # -L برای دنبال کردن ریدایرکت‌ها
-          # --retry 3 برای 3 بار تلاش مجدد در صورت خطای موقت
-          # --fail برای اینکه در صورت خطای HTTP (مثل 404) کد خروج غیرصفر برگرداند
-          curl --fail --retry 3 --retry-delay 5 -L -o "$FILENAME" "$URL"
-          CURL_EXIT_CODE=$? # ذخیره کد خروج دستور curl
+          curl --fail \
+               --connect-timeout 15 \
+               --max-time 60 \
+               --retry 2 \
+               --retry-delay 2 \
+               -L -o "$FILENAME" "$URL"
+          CURL_EXIT_CODE=$?
           echo "::endgroup::"
 
-          # اگر curl موفق بود
           if [ $CURL_EXIT_CODE -eq 0 ]; then
             echo "✅ Curl downloaded the file successfully."
-            echo "downloaded_file_path=$FILENAME" >> $GITHUB_OUTPUT # ذخیره نام فایل برای مراحل بعدی
+            echo "downloaded_file_path=$FILENAME" >> $GITHUB_OUTPUT
           else
-            echo "❌ Curl failed with exit code $CURL_EXIT_CODE. Trying wget..."
-            rm -f "$FILENAME" # حذف فایل ناقص احتمالی
+            echo "❌ Curl failed or timed out (exit code $CURL_EXIT_CODE). Trying wget..."
+            rm -f "$FILENAME"
 
-            # تلاش دوم: با استفاده از wget
+            # تلاش دوم: wget (با محدودیت زمان 15 ثانیه)
             echo "::group::Attempt 2: Using wget"
-            # --tries=3 برای 3 بار تلاش مجدد
-            wget --tries=3 --timeout=15 -O "$FILENAME" "$URL"
+            wget --tries=2 \
+                 --timeout=15 \
+                 --read-timeout=15 \
+                 -O "$FILENAME" "$URL"
             WGET_EXIT_CODE=$?
             echo "::endgroup::"
             
-            # اگر wget موفق بود
             if [ $WGET_EXIT_CODE -eq 0 ]; then
               echo "✅ Wget downloaded the file successfully."
               echo "downloaded_file_path=$FILENAME" >> $GITHUB_OUTPUT
             else
-              echo "❌ Wget failed with exit code $WGET_EXIT_CODE. Trying aria2c..."
+              echo "❌ Wget failed or timed out (exit code $WGET_EXIT_CODE). Trying aria2c..."
               rm -f "$FILENAME"
 
-              # تلاش سوم: با استفاده از aria2c
+              # تلاش سوم: aria2c (با محدودیت زمان 15 ثانیه)
               echo "::group::Attempt 3: Using aria2c"
-              # -x 4 برای استفاده از 4 کانکشن همزمان برای سرعت بیشتر
-              aria2c -x 4 -s 4 --file-allocation=none -o "$FILENAME" "$URL"
+              aria2c -x 4 -s 4 \
+                     --connect-timeout=15 \
+                     --timeout=15 \
+                     --max-tries=2 \
+                     --file-allocation=none \
+                     -o "$FILENAME" "$URL"
               ARIA2_EXIT_CODE=$?
               echo "::endgroup::"
 
-              # اگر aria2c موفق بود
               if [ $ARIA2_EXIT_CODE -eq 0 ]; then
                 echo "✅ aria2c downloaded the file successfully."
                 echo "downloaded_file_path=$FILENAME" >> $GITHUB_OUTPUT
               else
-                echo "❌ aria2c failed with exit code $ARIA2_EXIT_CODE."
-                # اگر همه روش‌ها شکست خوردند
-                echo "::error::All download methods (curl, wget, aria2c) failed. Cannot download the file."
-                exit 1 # این دستور باعث می‌شود کل جاب ناموفق شود
+                echo "❌ aria2c failed or timed out (exit code $ARIA2_EXIT_CODE)."
+                echo "::error::All download methods (curl, wget, aria2c) failed or timed out. Cannot download the file."
+                exit 1
               fi
             fi
           fi
 
-          # بررسی نهایی فایل دانلود شده
           echo "Verifying downloaded file..."
           ls -lh "$FILENAME"
           if [ -s "$FILENAME" ]; then
@@ -105,14 +95,9 @@ jobs:
             exit 1
           fi
 
-      # مرحله چهارم: آپلود فایل دانلود شده به عنوان Artifact
-      # این مرحله فقط در صورتی اجرا می‌شود که مرحله قبل موفق بوده باشد
       - name: Upload Downloaded File as Artifact
         uses: actions/upload-artifact@v4
         with:
-          # نام آرتیفکت که در صفحه Workflow نمایش داده می‌شود
           name: downloaded-file
-          # مسیر فایلی که باید آپلود شود. از خروجی مرحله قبل خوانده می‌شود
           path: ${{ steps.download_step.outputs.downloaded_file_path }}
-          # مدت زمان نگهداری آرتیفکت (مثلا ۷ روز)
           retention-days: 7
