@@ -1,11 +1,10 @@
-ss://401374e6df7741fbf638dad8184f175bOg==@45.85.118.141:443#RO%F0%9F%87%B7%F0%9F%87%B4+%7C+45.85.118.141-443+%7C+12.73ms
+ss://401374e6df7741fbf638dad8184f175bOg==@45.85.118.141:443#RO%F0%9F%87%B7%F0%9F%87%B4+%7C+45.85.118.141-443+%7C+2.25ms
 ss://6202b230-417c-4d8e-b624-0f71afa9c75d@188.241.241.123:2053?&security=tls&fp=chrome&sni=sni.111000.dynv6.net&type=ws&headerType=none&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#_%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A
 ss://6202b230-417c-4d8e-b624-0f71afa9c75d@188.241.241.3:2053?&security=tls&fp=chrome&sni=sni.111000.dynv6.net&type=ws&headerType=none&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#_%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A%202
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpRRld6Q3cydVg5QjlpNnFBWWVGQklF@154.46.31.106:443#%3E%3E%40OutlineVpnOfficial%3A%3ARO
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpRRld6Q3cydVg5QjlpNnFBWWVGQklF@154.46.31.106:443#🇷🇴[openproxylist.com]
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpmOGY3YUN6Y1BLYnNGOHAz@185.126.239.249:990#%F0%9F%87%B7%F0%9F%87%B4_RO_%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@194.14.217.115:989#%F0%9F%87%B7%F0%9F%87%B4RO-194.14.217.115-8408
-ss://d342d11ed4244583b36e524ab1f0afa4Og==@45.85.118.93:2095#RO%F0%9F%87%B7%F0%9F%87%B4+%7C+45.85.118.93-2095+%7C+12.06ms
+ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@194.14.217.115:989#%F0%9F%87%B7%F0%9F%87%B4RO-194.14.217.115-8407
+ss://d342d11ed4244583b36e524ab1f0afa4Og==@45.85.118.93:2095#RO%F0%9F%87%B7%F0%9F%87%B4+%7C+45.85.118.93-2095+%7C+2.61ms
 ss://e033ef6e-ab4b-47d4-a523-ff568d2c8dbb@82.117.255.37:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=TH8C9sgNuMRVR3o5QehXPgYw8PWjoHrH2rVQF4JWwGI&security=reality&sni=tradingview.com&type=tcp#%3E%3E%40oneclickvpnkeys%3A%3ARO
 ss://e033ef6e-ab4b-47d4-a523-ff568d2c8dbb@82.117.255.37:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=TH8C9sgNuMRVR3o5QehXPgYw8PWjoHrH2rVQF4JWwGI&security=reality&sni=tradingview.com&type=tcp#🇷🇴[openproxylist.com]
 vless://6202b230-417c-4d8e-b624-0f71afa9c75d@188.241.241.123:2053?&security=tls&fp=chrome&sni=sni.111000.dynv6.net&type=ws&headerType=none&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#_%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A
