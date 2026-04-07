@@ -1,10 +1,8 @@
 ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@192.36.27.116:989#%F0%9F%87%A9%F0%9F%87%B0DK-192.36.27.116-7431
 ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@192.36.27.94:989#%F0%9F%87%A9%F0%9F%87%B0DK-192.36.27.94-0282
 ss://aaaaaabb-4ddd-4eee-9fff-ffffffffffff@104.21.95.114:443/?type=ws&encryption=none&host=afrcloud22.mmv.kr&path=%2F185.186.245.40%3A81&security=tls&sni=afrcloud22.mmv.kr#%F0%9F%87%A9%F0%9F%87%B0%40FREE2CONFIG%20
-ss://ca05976a-2dea-11f1-9ec5-baabcd4be2cd@193.233.253.77:8443?security=reality&encryption=none&pbk=FVL0r87K3-vUP2KXQX1juLMFEHJtvxwKM-nm6_PYllc&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=www.apple.com&sid=cafe01234567#🇩🇰[openproxylist.com]
 ss://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855/?type=ws&encryption=none&flow=&path=%2F#%3E%3E%40oneclickvpnkeys%3A%3ADK
 ss://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855/?type=ws&encryption=none&path=%2F#%F0%9F%87%A9%F0%9F%87%B0Denmark%2B-%3E%2B%F0%9F%87%A9%F0%9F%87%B0Denmark%2B%E2%9A%A1%40DeamNet_Proxy
 vless://aaaaaabb-4ddd-4eee-9fff-ffffffffffff@104.21.95.114:443/?type=ws&encryption=none&host=afrcloud22.mmv.kr&path=%2F185.186.245.40%3A81&security=tls&sni=afrcloud22.mmv.kr#%F0%9F%87%A9%F0%9F%87%B0%40FREE2CONFIG%20
-vless://ca05976a-2dea-11f1-9ec5-baabcd4be2cd@193.233.253.77:8443?security=reality&encryption=none&pbk=FVL0r87K3-vUP2KXQX1juLMFEHJtvxwKM-nm6_PYllc&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=www.apple.com&sid=cafe01234567#🇩🇰[openproxylist.com]
 vless://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855/?type=ws&encryption=none&flow=&path=%2F#%3E%3E%40oneclickvpnkeys%3A%3ADK
 vless://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855/?type=ws&encryption=none&path=%2F#%F0%9F%87%A9%F0%9F%87%B0Denmark%2B-%3E%2B%F0%9F%87%A9%F0%9F%87%B0Denmark%2B%E2%9A%A1%40DeamNet_Proxy
