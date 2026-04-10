@@ -1,2 +1,0 @@
-ss://6202b230-417c-4d8e-b624-0f71afa9c75d@87.120.92.150:8443?&security=tls&fp=chrome&sni=sni.111000.indevs.in&type=ws&headerType=none&host=sni.111000.indevs.in&path=%2F#_%E6%96%AF%E9%87%8C%E5%85%B0%E5%8D%A1
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@87.120.92.150:8443?&security=tls&fp=chrome&sni=sni.111000.indevs.in&type=ws&headerType=none&host=sni.111000.indevs.in&path=%2F#_%E6%96%AF%E9%87%8C%E5%85%B0%E5%8D%A1
