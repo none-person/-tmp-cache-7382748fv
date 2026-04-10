@@ -3,12 +3,11 @@ ss://8910cbb3-33b1-4266-a243-ac780ac63394@45.15.170.237:80/?type=ws&encryption=n
 ss://8910cbb3-33b1-4266-a243-ac780ac63394@pq-albania1.09vpn.com:80?path=%2Fvless%2F&security=&encryption=none&type=ws#%3E%3E%40FreakConfig%3A%3AAL
 ss://8910cbb3-33b1-4266-a243-ac780ac63394@pq-albania1.09vpn.com:80?path=%2Fvless%2F&security=&encryption=none&type=ws#%F0%9F%87%A6%F0%9F%87%B1%40FreakConfig
 ss://8910cbb3-33b1-4266-a243-ac780ac63394@pq-albania1.09vpn.com:80?path=%2Fvless%2F&security=&encryption=none&type=ws#🇦🇱[openproxylist.com]
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@31.171.153.181:989#%F0%9F%87%A6%F0%9F%87%B1AL-31.171.153.181-8194
+ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@31.171.153.181:989#%F0%9F%87%A6%F0%9F%87%B1AL-31.171.153.181-8184
 ss://YWVzLTI1Ni1nY206ZG9uZ3RhaXdhbmcuY29tQDEwOS4xMDQuMTUyLjI3OjEyMzQ1#%F0%9F%87%A6%F0%9F%87%B1_AL_%E9%98%BF%E5%B0%94%E5%B7%B4%E5%B0%BC%E4%BA%9A_11
-ss://c38e6142-9223-47ef-84ce-2a84a308cafb@78.159.131.23:443?security=reality&encryption=none&pbk=su3dq3BDLDkX-jIjq3GyVUXwqzD7CNVYzKtOcO4HQ24&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=al.cdn.stun.su&sid=b0207954e822d0e4#REALITY|AL🇦🇱
+trojan://MeaDiUmPlkWbZJ2BON8tz@78.159.131.12:28259?allowInsecure=0&sni=ads.x5.ru#🇦🇱[openproxylist.com]
 vless://686c62d9-17a7-43c9-a40a-f6747df60a9f@104.16.250.22:2096/?type=ws&encryption=none&host=ca.adobe-connect.top&path=%2F&security=tls&sni=ca.adobe-connect.top&fp=chrome#%F0%9F%87%A6%F0%9F%87%B1%40FREE2CONFIG%20
 vless://8910cbb3-33b1-4266-a243-ac780ac63394@45.15.170.237:80/?type=ws&encryption=none&path=%2Fvless%2F#%F0%9F%87%A6%F0%9F%87%B1%20WS-None%20%7C%20%40v2ray_configs_pool%20%281%29
 vless://8910cbb3-33b1-4266-a243-ac780ac63394@pq-albania1.09vpn.com:80?path=%2Fvless%2F&security=&encryption=none&type=ws#%3E%3E%40FreakConfig%3A%3AAL
 vless://8910cbb3-33b1-4266-a243-ac780ac63394@pq-albania1.09vpn.com:80?path=%2Fvless%2F&security=&encryption=none&type=ws#%F0%9F%87%A6%F0%9F%87%B1%40FreakConfig
 vless://8910cbb3-33b1-4266-a243-ac780ac63394@pq-albania1.09vpn.com:80?path=%2Fvless%2F&security=&encryption=none&type=ws#🇦🇱[openproxylist.com]
-vless://c38e6142-9223-47ef-84ce-2a84a308cafb@78.159.131.23:443?security=reality&encryption=none&pbk=su3dq3BDLDkX-jIjq3GyVUXwqzD7CNVYzKtOcO4HQ24&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=al.cdn.stun.su&sid=b0207954e822d0e4#REALITY|AL🇦🇱

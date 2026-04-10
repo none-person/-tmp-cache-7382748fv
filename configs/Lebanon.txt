@@ -1,4 +1,0 @@
-ss://99f06929-4311-489c-91cc-ef1c582e5dfa@77.110.122.205:26946?&security=false&fp=chrome&type=tcp&headerType=none&path=%2F#_%E9%BB%8E%E5%B7%B4%E5%AB%A9%202
-ss://99f06929-4311-489c-91cc-ef1c582e5dfa@77.110.122.205:26946?&security=false&fp=chrome&type=tcp&headerType=none&path=%2F#_%E9%BB%8E%E5%B7%B4%E5%AB%A9%203
-vless://99f06929-4311-489c-91cc-ef1c582e5dfa@77.110.122.205:26946?&security=false&fp=chrome&type=tcp&headerType=none&path=%2F#_%E9%BB%8E%E5%B7%B4%E5%AB%A9%202
-vless://99f06929-4311-489c-91cc-ef1c582e5dfa@77.110.122.205:26946?&security=false&fp=chrome&type=tcp&headerType=none&path=%2F#_%E9%BB%8E%E5%B7%B4%E5%AB%A9%203
