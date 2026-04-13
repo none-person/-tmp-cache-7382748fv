@@ -1,37 +1,42 @@
-name: Fetch ECH Config
+name: Get Cloudflare ECH Config
 
 on:
-  workflow_dispatch: # امکان اجرای دستی را به شما می‌دهد
+  workflow_dispatch: # امکان اجرای دستی (Manual Trigger) را فراهم می‌کند
   schedule:
-    - cron: '0 0 * * *' # اجرای خودکار در نیمه‌شب هر روز (اختیاری)
+    - cron: '0 0 * * *' # اجرای خودکار هر روز نیمه‌شب (اختیاری)
 
 jobs:
-  get-ech-key:
+  fetch-ech:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Fetch DNS HTTPS Record
+      - name: Fetch and Extract ECH Config
         run: |
-          echo "Fetching HTTPS record for my-vpn.firstforconnect.workers.dev..."
+          echo "Fetching DNS record for my-vpn.firstforconnect.workers.dev..."
           
-          # دریافت اطلاعات از کلادفلر با فرمت JSON
+          # درخواست به API کلادفلر
           RESPONSE=$(curl -s -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=my-vpn.firstforconnect.workers.dev&type=HTTPS")
           
-          echo "Raw Response: $RESPONSE"
+          # استخراج رشته ECH با استفاده از jq و grep
+          # مقدار data چیزی شبیه این است: 1 . alpn="h3,h2" ipv4hint=... ech=AEX+...
+          ECH_STR=$(echo "$RESPONSE" | jq -r '.Answer[]?.data' | grep -oP 'ech=\K[^" ]+')
           
-          # استخراج رشته ECH (حذف کلمه ech= و کاراکترهای اضافی)
-          ECH_CONFIG=$(echo "$RESPONSE" | grep -o 'ech=[^"]*' | sed 's/ech=//' | sed 's/\\//g')
-          
-          if [ -z "$ECH_CONFIG" ]; then
-            echo "Error: ECH config not found!"
-            echo "Failed to get ECH" > ech_config.txt
-          else
-            echo "Success! ECH Config extracted."
-            echo "$ECH_CONFIG" > ech_config.txt
+          if [ -z "$ECH_STR" ]; then
+            echo "Error: Could not find ECH config. Maybe the domain doesn't have ECH enabled or the response is invalid."
+            echo "Raw response was:"
+            echo "$RESPONSE"
+            exit 1
           fi
-
-      - name: Upload ECH Config as Artifact
+          
+          echo "Successfully extracted ECH Config!"
+          echo "Saving to ech_config.txt..."
+          
+          # ذخیره در فایل متنی
+          echo "$ECH_STR" > ech_config.txt
+          
+      - name: Upload ECH Config File
         uses: actions/upload-artifact@v4
         with:
-          name: ech-config-file
+          name: ECH-Config-File
           path: ech_config.txt
+          retention-days: 5 # فایل تا ۵ روز در گیت‌هاب برای دانلود می‌ماند
