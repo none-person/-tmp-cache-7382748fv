@@ -1,8 +1,10 @@
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@192.36.27.116:989#%F0%9F%87%A9%F0%9F%87%B0DK-192.36.27.116-8286
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@192.36.27.94:989#%F0%9F%87%A9%F0%9F%87%B0DK-192.36.27.94-0245
+ss://4b056394-2f40-11f1-bffe-46c4782ac1a7@193.233.253.73:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=FVL0r87K3-vUP2KXQX1juLMFEHJtvxwKM-nm6_PYllc&security=reality&sid=deadbeef42&sni=www.apple.com&type=tcp#🇩🇰[openproxylist.com]
+ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@192.36.27.116:989#%F0%9F%87%A9%F0%9F%87%B0DK-192.36.27.116-8283
+ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@192.36.27.94:989#%F0%9F%87%A9%F0%9F%87%B0DK-192.36.27.94-0228
 ss://aaaaaabb-4ddd-4eee-9fff-ffffffffffff@104.21.95.114:443/?type=ws&encryption=none&host=afrcloud22.mmv.kr&path=%2F185.186.245.40%3A81&security=tls&sni=afrcloud22.mmv.kr#%F0%9F%87%A9%F0%9F%87%B0%40FREE2CONFIG%20
 ss://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855/?type=ws&encryption=none&path=%2F#%F0%9F%87%A9%F0%9F%87%B0Denmark%2B-%3E%2B%F0%9F%87%A9%F0%9F%87%B0Denmark%2B%E2%9A%A1%40DeamNet_Proxy
-ss://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855?&security=false&fp=chrome&type=ws&headerType=none&path=%2F#%5B%F0%9F%87%A9%F0%9F%87%B0%5D%20%5Bvl-no-ws%5D%20%5B260412-013009.480%5D
+ss://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855?&security=false&fp=chrome&type=ws&headerType=none&path=%2F#%5B%F0%9F%87%A9%F0%9F%87%B0%5D%20%5Bvl-no-ws%5D%20%5B260413-013252.543%5D
+vless://4b056394-2f40-11f1-bffe-46c4782ac1a7@193.233.253.73:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=FVL0r87K3-vUP2KXQX1juLMFEHJtvxwKM-nm6_PYllc&security=reality&sid=deadbeef42&sni=www.apple.com&type=tcp#🇩🇰[openproxylist.com]
 vless://aaaaaabb-4ddd-4eee-9fff-ffffffffffff@104.21.95.114:443/?type=ws&encryption=none&host=afrcloud22.mmv.kr&path=%2F185.186.245.40%3A81&security=tls&sni=afrcloud22.mmv.kr#%F0%9F%87%A9%F0%9F%87%B0%40FREE2CONFIG%20
 vless://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855/?type=ws&encryption=none&path=%2F#%F0%9F%87%A9%F0%9F%87%B0Denmark%2B-%3E%2B%F0%9F%87%A9%F0%9F%87%B0Denmark%2B%E2%9A%A1%40DeamNet_Proxy
-vless://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855?&security=false&fp=chrome&type=ws&headerType=none&path=%2F#%5B%F0%9F%87%A9%F0%9F%87%B0%5D%20%5Bvl-no-ws%5D%20%5B260412-013009.480%5D
+vless://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855?&security=false&fp=chrome&type=ws&headerType=none&path=%2F#%5B%F0%9F%87%A9%F0%9F%87%B0%5D%20%5Bvl-no-ws%5D%20%5B260413-013252.543%5D
