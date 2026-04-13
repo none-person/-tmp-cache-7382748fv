@@ -20,12 +20,12 @@ jobs:
           DOMAIN="crypto.cloudflare.com"
           echo "در حال دریافت اطلاعات DNS برای $DOMAIN با استفاده از ابزار dig..."
           
-          # ابزار dig خودش دیتای خام را ترجمه کرده و رشته ech را به ما می‌دهد
           DIG_OUTPUT=$(dig HTTPS $DOMAIN +short)
           echo "خروجی خام dig:"
           echo "$DIG_OUTPUT"
           
-          ECH_CONFIG=$(echo "$DIG_OUTPUT" | grep -oP 'ech="\K[^"]+' || true)
+          # تغییر دستور: حالا کلمات بدون کوتیشن را تا رسیدن به اولین فاصله (Space) استخراج می‌کند
+          ECH_CONFIG=$(echo "$DIG_OUTPUT" | grep -oP 'ech=\K\S+' || true)
           
           if [ -z "$ECH_CONFIG" ]; then
             echo "خطا: کلید ECH استخراج نشد!"
@@ -33,7 +33,7 @@ jobs:
           fi
           
           echo "$ECH_CONFIG" > ech_config.txt
-          echo "کلید ECH با موفقیت به فرمت Base64 استخراج شد!"
+          echo "کلید ECH با موفقیت استخراج شد!"
 
       - name: Commit and Push changes
         run: |
