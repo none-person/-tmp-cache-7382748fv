@@ -1,12 +1,12 @@
 name: Fetch and Update ECH Config
 
 on:
-  workflow_dispatch: # اجازه می‌دهد این اسکریپت را به صورت دستی با یک کلیک اجرا کنید
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # (اختیاری) اجرای خودکار هر روز ساعت ۱۲ شب برای آپدیت نگه داشتن کلیدها
+    - cron: '0 0 * * *'
 
 permissions:
-  contents: write # دسترسی لازم برای کامیت کردن فایل در ریپازیتوری
+  contents: write
 
 jobs:
   update-ech-config:
@@ -17,38 +17,36 @@ jobs:
 
       - name: Fetch ECH Config from Cloudflare
         run: |
-          # دریافت اطلاعات رکوردهای HTTPS از کلادفلر
-          JSON_RESPONSE=$(curl -s -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=my-vpn.firstforconnect.workers.dev&type=HTTPS")
+          # تغییر هدف به دامنه بیرونی (crypto.cloudflare.com)
+          DOMAIN="crypto.cloudflare.com"
+          echo "در حال دریافت اطلاعات DNS برای $DOMAIN ..."
           
-          # استخراج مقدار قرار گرفته در مقابل ="ech" 
-          # از عبارات باقاعده (RegEx) استفاده شده تا فقط رشته بین دابل‌کوتیشن استخراج شود
-          ECH_CONFIG=$(echo "$JSON_RESPONSE" | grep -oP 'ech="\K[^"]+')
+          JSON_RESPONSE=$(curl -s -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=$DOMAIN&type=HTTPS")
           
-          # بررسی اینکه آیا کلید با موفقیت استخراج شده است یا خیر
+          # استفاده از || true برای جلوگیری از توقف خودکار اسکریپت در محیط گیت‌هاب اکشن
+          ECH_CONFIG=$(echo "$JSON_RESPONSE" | grep -oP 'ech="\K[^"]+' || true)
+          
+          # اگر کلید پیدا نشد، خطا چاپ کن و خارج شو
           if [ -z "$ECH_CONFIG" ]; then
-            echo "خطا: کلید ECH در پاسخ یافت نشد!"
+            echo "خطا: کلید ECH در پاسخ یافت نشد! ممکن است این دامنه ECH نداشته باشد."
             echo "پاسخ دریافتی: $JSON_RESPONSE"
             exit 1
           fi
           
-          # ذخیره کلید در فایل متنی
           echo "$ECH_CONFIG" > ech_config.txt
-          echo "کلید با موفقیت استخراج شد و در ech_config.txt قرار گرفت."
+          echo "کلید ECH با موفقیت استخراج شد!"
 
       - name: Commit and Push changes
         run: |
-          # تنظیمات یوزر برای کامیت گیت‌هاب
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
           
-          # اضافه کردن فایل متنی
           git add ech_config.txt
           
-          # بررسی اینکه آیا فایل نسبت به قبل تغییری کرده است یا خیر
           if git diff-index --quiet HEAD; then
-            echo "کلید ECH تغییری نکرده است. نیازی به کامیت جدید نیست."
+            echo "کلید ECH تغییری نکرده است. نیازی به کامیت نیست."
           else
             git commit -m "Auto-update ECH config [$(date -u +'%Y-%m-%d %H:%M:%S UTC')]"
             git push
-            echo "فایل جدید کامیت و پوش شد."
+            echo "فایل آپدیت و کامیت شد."
           fi
