@@ -15,26 +15,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch ECH Config from Cloudflare
+      - name: Fetch ECH Config using Dig
         run: |
-          # تغییر هدف به دامنه بیرونی (crypto.cloudflare.com)
           DOMAIN="crypto.cloudflare.com"
-          echo "در حال دریافت اطلاعات DNS برای $DOMAIN ..."
+          echo "در حال دریافت اطلاعات DNS برای $DOMAIN با استفاده از ابزار dig..."
           
-          JSON_RESPONSE=$(curl -s -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=$DOMAIN&type=HTTPS")
+          # ابزار dig خودش دیتای خام را ترجمه کرده و رشته ech را به ما می‌دهد
+          DIG_OUTPUT=$(dig HTTPS $DOMAIN +short)
+          echo "خروجی خام dig:"
+          echo "$DIG_OUTPUT"
           
-          # استفاده از || true برای جلوگیری از توقف خودکار اسکریپت در محیط گیت‌هاب اکشن
-          ECH_CONFIG=$(echo "$JSON_RESPONSE" | grep -oP 'ech="\K[^"]+' || true)
+          ECH_CONFIG=$(echo "$DIG_OUTPUT" | grep -oP 'ech="\K[^"]+' || true)
           
-          # اگر کلید پیدا نشد، خطا چاپ کن و خارج شو
           if [ -z "$ECH_CONFIG" ]; then
-            echo "خطا: کلید ECH در پاسخ یافت نشد! ممکن است این دامنه ECH نداشته باشد."
-            echo "پاسخ دریافتی: $JSON_RESPONSE"
+            echo "خطا: کلید ECH استخراج نشد!"
             exit 1
           fi
           
           echo "$ECH_CONFIG" > ech_config.txt
-          echo "کلید ECH با موفقیت استخراج شد!"
+          echo "کلید ECH با موفقیت به فرمت Base64 استخراج شد!"
 
       - name: Commit and Push changes
         run: |
