@@ -1,55 +1,54 @@
-name: Fetch ECH Config
+name: Fetch and Update ECH Config
 
 on:
-  workflow_dispatch: # امکان اجرای دستی اسکریپت را فراهم می‌کند
+  workflow_dispatch: # اجازه می‌دهد این اسکریپت را به صورت دستی با یک کلیک اجرا کنید
   schedule:
-    - cron: '0 0 * * *' # اجرای خودکار هر روز ساعت 12 شب (UTC)
+    - cron: '0 0 * * *' # (اختیاری) اجرای خودکار هر روز ساعت ۱۲ شب برای آپدیت نگه داشتن کلیدها
+
+permissions:
+  contents: write # دسترسی لازم برای کامیت کردن فایل در ریپازیتوری
 
 jobs:
-  update-ech:
+  update-ech-config:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # مجوز لازم برای کامیت کردن تغییرات در مخزن
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch and Extract ECH Config
+      - name: Fetch ECH Config from Cloudflare
         run: |
-          echo "Fetching HTTPS record for the domain..."
+          # دریافت اطلاعات رکوردهای HTTPS از کلادفلر
+          JSON_RESPONSE=$(curl -s -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=my-vpn.firstforconnect.workers.dev&type=HTTPS")
           
-          # دریافت پاسخ DNS از کلادفلر، استخراج بخش دیتا، پیدا کردن عبارت ech="..." و حذف کاراکترهای اضافی
-          ECH_KEY=$(curl -s -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=my-vpn.firstforconnect.workers.dev&type=HTTPS" \
-            | jq -r '.Answer[].data // empty' \
-            | grep -o 'ech="[^"]*"' \
-            | head -n 1 \
-            | sed 's/ech="//g' \
-            | sed 's/"//g')
+          # استخراج مقدار قرار گرفته در مقابل ="ech" 
+          # از عبارات باقاعده (RegEx) استفاده شده تا فقط رشته بین دابل‌کوتیشن استخراج شود
+          ECH_CONFIG=$(echo "$JSON_RESPONSE" | grep -oP 'ech="\K[^"]+')
           
-          if [ -z "$ECH_KEY" ]; then
-            echo "Failed to extract ECH key. Maybe the domain is wrong or ECH is disabled."
+          # بررسی اینکه آیا کلید با موفقیت استخراج شده است یا خیر
+          if [ -z "$ECH_CONFIG" ]; then
+            echo "خطا: کلید ECH در پاسخ یافت نشد!"
+            echo "پاسخ دریافتی: $JSON_RESPONSE"
             exit 1
           fi
           
-          echo "Successfully extracted ECH Config."
-          
-          # ذخیره کلید در فایل txt
-          echo "$ECH_KEY" > ech_config.txt
+          # ذخیره کلید در فایل متنی
+          echo "$ECH_CONFIG" > ech_config.txt
+          echo "کلید با موفقیت استخراج شد و در ech_config.txt قرار گرفت."
 
-      - name: Commit and Push Changes
+      - name: Commit and Push changes
         run: |
-          # تنظیمات ربات گیت‌هاب برای کامیت
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # تنظیمات یوزر برای کامیت گیت‌هاب
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
           
+          # اضافه کردن فایل متنی
           git add ech_config.txt
           
-          # بررسی اینکه آیا تغییری در فایل ایجاد شده است یا خیر
-          if git diff --staged --quiet; then
-            echo "No changes in ECH config. The key is still the same. Skipping commit."
+          # بررسی اینکه آیا فایل نسبت به قبل تغییری کرده است یا خیر
+          if git diff-index --quiet HEAD; then
+            echo "کلید ECH تغییری نکرده است. نیازی به کامیت جدید نیست."
           else
-            git commit -m "Auto-update ECH config [skip ci]"
+            git commit -m "Auto-update ECH config [$(date -u +'%Y-%m-%d %H:%M:%S UTC')]"
             git push
-            echo "New ECH config has been committed and pushed to the repository."
+            echo "فایل جدید کامیت و پوش شد."
           fi
