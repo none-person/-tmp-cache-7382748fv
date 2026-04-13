@@ -1,42 +1,55 @@
-name: Get Cloudflare ECH Config
+name: Fetch ECH Config
 
 on:
-  workflow_dispatch: # امکان اجرای دستی (Manual Trigger) را فراهم می‌کند
+  workflow_dispatch: # امکان اجرای دستی اسکریپت را فراهم می‌کند
   schedule:
-    - cron: '0 0 * * *' # اجرای خودکار هر روز نیمه‌شب (اختیاری)
+    - cron: '0 0 * * *' # اجرای خودکار هر روز ساعت 12 شب (UTC)
 
 jobs:
-  fetch-ech:
+  update-ech:
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: write # مجوز لازم برای کامیت کردن تغییرات در مخزن
+
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Fetch and Extract ECH Config
         run: |
-          echo "Fetching DNS record for my-vpn.firstforconnect.workers.dev..."
+          echo "Fetching HTTPS record for the domain..."
           
-          # درخواست به API کلادفلر
-          RESPONSE=$(curl -s -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=my-vpn.firstforconnect.workers.dev&type=HTTPS")
+          # دریافت پاسخ DNS از کلادفلر، استخراج بخش دیتا، پیدا کردن عبارت ech="..." و حذف کاراکترهای اضافی
+          ECH_KEY=$(curl -s -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=my-vpn.firstforconnect.workers.dev&type=HTTPS" \
+            | jq -r '.Answer[].data // empty' \
+            | grep -o 'ech="[^"]*"' \
+            | head -n 1 \
+            | sed 's/ech="//g' \
+            | sed 's/"//g')
           
-          # استخراج رشته ECH با استفاده از jq و grep
-          # مقدار data چیزی شبیه این است: 1 . alpn="h3,h2" ipv4hint=... ech=AEX+...
-          ECH_STR=$(echo "$RESPONSE" | jq -r '.Answer[]?.data' | grep -oP 'ech=\K[^" ]+')
-          
-          if [ -z "$ECH_STR" ]; then
-            echo "Error: Could not find ECH config. Maybe the domain doesn't have ECH enabled or the response is invalid."
-            echo "Raw response was:"
-            echo "$RESPONSE"
+          if [ -z "$ECH_KEY" ]; then
+            echo "Failed to extract ECH key. Maybe the domain is wrong or ECH is disabled."
             exit 1
           fi
           
-          echo "Successfully extracted ECH Config!"
-          echo "Saving to ech_config.txt..."
+          echo "Successfully extracted ECH Config."
           
-          # ذخیره در فایل متنی
-          echo "$ECH_STR" > ech_config.txt
+          # ذخیره کلید در فایل txt
+          echo "$ECH_KEY" > ech_config.txt
+
+      - name: Commit and Push Changes
+        run: |
+          # تنظیمات ربات گیت‌هاب برای کامیت
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-      - name: Upload ECH Config File
-        uses: actions/upload-artifact@v4
-        with:
-          name: ECH-Config-File
-          path: ech_config.txt
-          retention-days: 5 # فایل تا ۵ روز در گیت‌هاب برای دانلود می‌ماند
+          git add ech_config.txt
+          
+          # بررسی اینکه آیا تغییری در فایل ایجاد شده است یا خیر
+          if git diff --staged --quiet; then
+            echo "No changes in ECH config. The key is still the same. Skipping commit."
+          else
+            git commit -m "Auto-update ECH config [skip ci]"
+            git push
+            echo "New ECH config has been committed and pushed to the repository."
+          fi
