@@ -1,4 +1,5 @@
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjYjk1NWM4NTMwMzIwMTIw@38.54.29.57:11201#🇬🇷[openproxylist.com]
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@192.71.166.102:989#%F0%9F%87%AC%F0%9F%87%B7GR-192.71.166.102-3376
+ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@192.71.166.102:989#%F0%9F%87%AC%F0%9F%87%B7GR-192.71.166.102-3347
 ss://ce069292-c8bf-40dd-a6b1-87818a1e64e9@91.132.132.233:443?&security=tls&fp=chrome&sni=1-cw6.pages.dev&type=ws&headerType=none&host=1-cw6.pages.dev&path=%2Fproxyip%3DProxyIP.DE.owg.dpdns.org#_%E5%B8%8C%E8%85%8A
+ss://ce069292-c8bf-40dd-a6b1-87818a1e64e9@91.132.132.233:443?&security=tls&fp=chrome&sni=3-deu.pages.dev&type=ws&headerType=none&host=3-deu.pages.dev&path=%2F#_%E5%B8%8C%E8%85%8A%202
 vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@91.132.132.233:443?&security=tls&fp=chrome&sni=1-cw6.pages.dev&type=ws&headerType=none&host=1-cw6.pages.dev&path=%2Fproxyip%3DProxyIP.DE.owg.dpdns.org#_%E5%B8%8C%E8%85%8A
+vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@91.132.132.233:443?&security=tls&fp=chrome&sni=3-deu.pages.dev&type=ws&headerType=none&host=3-deu.pages.dev&path=%2F#_%E5%B8%8C%E8%85%8A%202
