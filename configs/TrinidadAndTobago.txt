@@ -1,2 +1,0 @@
-ss://06ef598c-1555-4887-b3f9-08214a2f6792@222.167.202.35:7443?&security=tls&fp=chrome&sni=2026.hhhhh.eu.org&type=ws&headerType=none&host=2026.hhhhh.eu.org&path=%2F222.167.202.35%3A7443#%E5%85%8D%E8%B4%B9VPN%EF%BC%9Ahttps%3A%2F%2Ftt.vg%2FOWeaF
-vless://06ef598c-1555-4887-b3f9-08214a2f6792@222.167.202.35:7443?&security=tls&fp=chrome&sni=2026.hhhhh.eu.org&type=ws&headerType=none&host=2026.hhhhh.eu.org&path=%2F222.167.202.35%3A7443#%E5%85%8D%E8%B4%B9VPN%EF%BC%9Ahttps%3A%2F%2Ftt.vg%2FOWeaF
