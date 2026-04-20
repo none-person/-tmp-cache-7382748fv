@@ -1,1 +1,4 @@
+ss://8d5e7f2a-3c1b-4d9e-a6f8-2b5c0e7d4a19@mangu1.zqjsqapi.com:443?encryption=none&security=tls&sni=mangu1.zqjsqapi.com&type=ws&host=mangu1.zqjsqapi.com&path=%2Fproxy#🇹🇭[openproxylist.com]
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozMTJlZTliY2M5NTcwMDk1@163.171.148.71:11201#Thailand
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozMTJlZTliY2M5NTcwMDk1@163.171.148.71:11201#👉🆔@v2ray_configs_pool📡🇹🇭®️Thailand©️Bangkok🅿️ping:214.08ms
+vless://8d5e7f2a-3c1b-4d9e-a6f8-2b5c0e7d4a19@mangu1.zqjsqapi.com:443?encryption=none&security=tls&sni=mangu1.zqjsqapi.com&type=ws&host=mangu1.zqjsqapi.com&path=%2Fproxy#🇹🇭[openproxylist.com]
