@@ -1,4 +1,3 @@
-ss://YWVzLTI1Ni1nY206ZzVNZUQ2RnQzQ1dsSklk@156.244.8.155:5004#SA%F0%9F%87%B8%F0%9F%87%A6+%7C+156.244.8.155-5004+%7C+218.42ms
-ss://YWVzLTI1Ni1nY206ZzVNZUQ2RnQzQ1dsSklk@156.244.8.155:5004#🇸🇦[openproxylist.com]
+ss://YWVzLTI1Ni1nY206ZzVNZUQ2RnQzQ1dsSklk@156.244.8.155:5004#SA%F0%9F%87%B8%F0%9F%87%A6+%7C+156.244.8.155-5004+%7C+168.52ms
 ss://sGLzG6kUwBpZd73sW0nq@81.208.170.142:1500/?type=grpc&encryption=none&sni=www.ebay.com&fp=chrome&security=reality&pbk=VQxVgczORkbSNdDrkNOYs6zMBINpViztTKDuWCeQsVE&sid=775eb6408888248e#%F0%9F%87%B8%F0%9F%87%A6Saudi%2BArabia%2B-%3E%2B%F0%9F%87%B8%F0%9F%87%A6Saudi%2BArabia%2B%E2%9A%A1%40DeamNet_Proxy%20%282%29
 vless://sGLzG6kUwBpZd73sW0nq@81.208.170.142:1500/?type=grpc&encryption=none&sni=www.ebay.com&fp=chrome&security=reality&pbk=VQxVgczORkbSNdDrkNOYs6zMBINpViztTKDuWCeQsVE&sid=775eb6408888248e#%F0%9F%87%B8%F0%9F%87%A6Saudi%2BArabia%2B-%3E%2B%F0%9F%87%B8%F0%9F%87%A6Saudi%2BArabia%2B%E2%9A%A1%40DeamNet_Proxy%20%282%29
