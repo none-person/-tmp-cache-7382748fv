@@ -1,2 +1,0 @@
-ss://d25caaab-e4b7-419f-9753-7229c7287f55@45.151.30.173:8443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=ang12.fasssst.ru&fp=chrome&security=reality&pbk=FkukwtrnUTnH3H7HtmWdxZV6axzxP-yE63TcviTR9jA&sid=64318fb6091432#%F0%9F%87%B9%F0%9F%87%AF%40FREE2CONFIG%20
-vless://d25caaab-e4b7-419f-9753-7229c7287f55@45.151.30.173:8443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=ang12.fasssst.ru&fp=chrome&security=reality&pbk=FkukwtrnUTnH3H7HtmWdxZV6axzxP-yE63TcviTR9jA&sid=64318fb6091432#%F0%9F%87%B9%F0%9F%87%AF%40FREE2CONFIG%20
