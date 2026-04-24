@@ -1,0 +1,36 @@
+name: Download Release Asset
+
+on:
+  workflow_dispatch:
+    inputs:
+      file_url:
+        description: 'لینک مستقیم دانلود فایل ریلیز (URL)'
+        required: true
+        type: string
+      file_name:
+        description: 'نام فایلی که می‌خواهید ذخیره شود (مثلا: app.zip)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  download-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download the file
+        run: |
+          wget -O "${{ inputs.file_name }}" "${{ inputs.file_url }}"
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ inputs.file_name }}"
+          git commit -m "Add release asset: ${{ inputs.file_name }}"
+          git push
