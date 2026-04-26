@@ -1,0 +1,24 @@
+name: Download Telegram
+
+on:
+  workflow_dispatch: # به شما اجازه می‌دهد اکشن را به صورت دستی اجرا کنید
+
+jobs:
+  download-and-save:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # دسترسی برای کامیت و پوش کردن فایل
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Telegram Setup
+        run: |
+          curl -L -o tsetup.exe https://telegram.org/dl/desktop/win64
+
+      - name: Commit and Push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Download latest Telegram Desktop (win64)"
+          file_pattern: "tsetup.exe"
